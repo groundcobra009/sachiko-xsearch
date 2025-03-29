@@ -25,7 +25,7 @@ document.getElementById('searchForm').addEventListener('submit', function(e) {
   const username = document.getElementById('username').value.trim();
   const startDate = document.getElementById('startDate').value;
   const endDate = document.getElementById('endDate').value;
-  const likeCount = document.getElementById('likeCount').textContent;
+  const minLikes = document.getElementById('likeCount').textContent;
   const country = document.getElementById('countrySelect').value;
   
   // 検索クエリの構築
@@ -49,12 +49,12 @@ document.getElementById('searchForm').addEventListener('submit', function(e) {
     query += ` since:${formattedStartDate} until:${formattedEndDate}`;
   }
   
-  if (likeCount && likeCount !== '0') {
-    query += ` min_faves:${likeCount}`;
+  if (minLikes && minLikes !== '0') {
+    query += ` min_fav:${minLikes}`;
   }
   
   if (country) {
-    query += ` place_country:${country}`;
+    query += ` lang:${country}`;
   }
   
   // 検索URLの構築と新しいタブでの表示
@@ -103,7 +103,7 @@ document.getElementById('shareBtn').addEventListener('click', function() {
   const username = document.getElementById('username').value.trim();
   const startDate = document.getElementById('startDate').value;
   const endDate = document.getElementById('endDate').value;
-  const likeCount = document.getElementById('likeCount').textContent;
+  const minLikes = document.getElementById('likeCount').textContent;
   const country = document.getElementById('countrySelect').value;
   
   // 共有URLの生成
@@ -112,7 +112,7 @@ document.getElementById('shareBtn').addEventListener('click', function() {
   if (username) params.append('user', username);
   if (startDate) params.append('start', startDate);
   if (endDate) params.append('end', endDate);
-  if (likeCount) params.append('likes', likeCount);
+  if (minLikes) params.append('likes', minLikes);
   if (country) params.append('country', country);
   
   const shareUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
@@ -143,7 +143,7 @@ document.getElementById('favoriteBtn').addEventListener('click', function() {
   const username = document.getElementById('username').value.trim();
   const startDate = document.getElementById('startDate').value;
   const endDate = document.getElementById('endDate').value;
-  const likeCount = document.getElementById('likeCount').textContent;
+  const minLikes = document.getElementById('likeCount').textContent;
   const country = document.getElementById('countrySelect').value;
   
   // 検索に名前を付けるプロンプト
@@ -157,7 +157,7 @@ document.getElementById('favoriteBtn').addEventListener('click', function() {
     username: username,
     startDate: startDate,
     endDate: endDate,
-    likeCount: likeCount,
+    minLikes: minLikes,
     country: country,
     timestamp: new Date().toISOString()
   };
@@ -288,7 +288,7 @@ function loadSavedSearches() {
       document.getElementById('username').value = search.username || '';
       document.getElementById('startDate').value = search.startDate || '';
       document.getElementById('endDate').value = search.endDate || '';
-      document.getElementById('likeCount').textContent = search.likeCount || '0';
+      document.getElementById('likeCount').textContent = search.minLikes || '0';
       document.getElementById('countrySelect').value = search.country || '';
       
       // モーダルを閉じる
