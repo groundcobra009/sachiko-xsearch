@@ -48,7 +48,7 @@ document.getElementById('searchForm').addEventListener('submit', function(e) {
   }
   
   if (minLikes && minLikes !== '0') {
-    query += ` min_fav:${minLikes}`;
+    query += ` min_faves:${minLikes}`;
   }
   
   if (country) {
