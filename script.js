@@ -44,9 +44,7 @@ document.getElementById('searchForm').addEventListener('submit', function(e) {
   }
   
   if (startDate && endDate) {
-    const formattedStartDate = startDate.replace(/-/g, '');
-    const formattedEndDate = endDate.replace(/-/g, '');
-    query += ` since:${formattedStartDate} until:${formattedEndDate}`;
+    query += ` since:${startDate} until:${endDate}`;
   }
   
   if (minLikes && minLikes !== '0') {
